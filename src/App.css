@@ -1,38 +1,93 @@
 .App {
+  font-family: Arial, sans-serif;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  background-color: #282c34; /* Dark background color */
+  color: #f8f9fa; /* Light text color */
+  min-height: 100vh; /* Ensure the app takes the full height of the viewport */
+  display: flex;
+  flex-direction: column;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #61dafb; /* Lighter blue color */
+  padding: 20px;
+  color: #282c34; /* Darker text for better readability */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
 }
 
-.App-link {
-  color: #61dafb;
+main {
+  flex: 1;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto; /* Center the content */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 columns for 7 days */
+  gap: 20px;
+}
+
+.grid-item {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+}
+
+.grid-item h2 {
+  background-color: #61dafb; /* Match the header color */
+  color: #282c34; /* Darker text for better readability */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #444;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+  transition: transform 0.2s; /* Add a hover effect */
+  color: #f8f9fa; /* Light text color for better readability */
+}
+
+li:hover {
+  transform: translateY(-3px); /* Lift the item on hover */
+}
+
+li h3 {
+  margin: 0;
+  color: #61dafb; /* Match the header color */
+}
+
+li p {
+  margin: 5px 0;
+  color: #f8f9fa; /* Light text color for better readability */
+}
+
+select {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background-color: #333;
+  color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+  transition: border-color 0.2s;
+}
+
+select:focus {
+  border-color: #61dafb; /* Change border color on focus */
+  outline: none; /* Remove default outline */
 }
