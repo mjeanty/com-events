@@ -1,93 +1,101 @@
-.App {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: #282c34; /* Dark background color */
-  color: #f8f9fa; /* Light text color */
-  min-height: 100vh; /* Ensure the app takes the full height of the viewport */
-  display: flex;
-  flex-direction: column;
-}
+/* Importing Retro Font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-.App-header {
-  background-color: #61dafb; /* Lighter blue color */
-  padding: 20px;
-  color: #282c34; /* Darker text for better readability */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
-}
-
-main {
-  flex: 1;
-  padding: 20px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto; /* Center the content */
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr); /* 7 columns for 7 days */
-  gap: 20px;
-}
-
-.grid-item {
-  background-color: #333;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
-}
-
-.grid-item h2 {
-  background-color: #61dafb; /* Match the header color */
-  color: #282c34; /* Darker text for better readability */
-  padding: 10px;
-  border-radius: 5px;
-}
-
-ul {
-  list-style-type: none;
+/* Global Body Styles */
+body {
+  background-color: black;
+  color: #00ff00; /* Neon green */
+  font-family: 'Press Start 2P', monospace; /* Retro pixel font */
+  margin: 0;
   padding: 0;
 }
 
-li {
-  background-color: #444;
-  margin: 10px 0;
-  padding: 15px;
-  border-radius: 5px;
+/* Main App Container */
+.App {
+  text-align: center;
+}
+
+/* Header Container */
+.App-header {
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid #00ff00; /* Neon green */
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+  color: #f1f1f1; /* Light gray text */
+}
+
+/* Header Title */
+.App-header h1 {
+  font-size: 2.5rem; /* Larger title size */
+  background: linear-gradient(90deg, #ff00ff, #00ffff); /* Gradient neon */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 3s infinite; /* Gradient scroll animation */
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff; /* Glowing effect */
+}
+
+/* Dropdown Styles */
+.dropdown {
+  background-color: black;
+  color: #00ff00; /* Neon green */
+  border: 2px solid #00ff00;
+  padding: 5px;
+  margin-bottom: 20px;
+  font-family: inherit;
+}
+
+/* Events List Container */
+.events-list {
   text-align: left;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
-  transition: transform 0.2s; /* Add a hover effect */
-  color: #f8f9fa; /* Light text color for better readability */
+  margin: 20px auto;
+  width: 80%;
+  padding: 20px;
+  border: 1px solid #00ff00; /* Neon green */
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
 }
 
-li:hover {
-  transform: translateY(-3px); /* Lift the item on hover */
-}
-
-li h3 {
-  margin: 0;
-  color: #61dafb; /* Match the header color */
-}
-
-li p {
-  margin: 5px 0;
-  color: #f8f9fa; /* Light text color for better readability */
-}
-
-select {
-  margin-top: 10px;
+/* Individual Event Item */
+.event-item {
+  margin-bottom: 20px;
   padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #444;
-  background-color: #333;
-  color: #f8f9fa;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
-  transition: border-color 0.2s;
+  background-color: rgba(0, 0, 0, 0.5); /* Slight transparency */
+  border: 1px solid #ff00ff; /* Neon magenta border */
+  border-radius: 8px;
 }
 
-select:focus {
-  border-color: #61dafb; /* Change border color on focus */
-  outline: none; /* Remove default outline */
+/* Label Styles */
+.label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #00ffff; /* Neon cyan */
+  text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; /* Glow */
+}
+
+/* Links */
+.link {
+  color: #ff00ff; /* Neon magenta */
+  text-decoration: none;
+  text-shadow: 0 0 10px #ff00ff; /* Glow */
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* Horizontal Line Styling */
+hr {
+  border: none;
+  border-top: 1px solid #00ff00; /* Neon green line */
+}
+
+/* Keyframes for Gradient Animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }

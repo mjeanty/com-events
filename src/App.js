@@ -1,28 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
+import backgroundImage from './0796e640-9c11-4990-b495-2e49cff86679.webp'; // Import the image
+const GOOGLE_MAPS_API_KEY = '<YOUR_API_KEY>'; // Replace with your API key
+
 function App() {
   const [events, setEvents] = useState([]);
   const [selectedDay, setSelectedDay] = useState('Monday');
 
   useEffect(() => {
+    // Fetch the events from your data source
     fetch('/data/events.json')
-      .then(response => response.json())
-      .then(data => setEvents(data));
+      .then((response) => response.json())
+      .then((data) => setEvents(data));
   }, []);
 
-  const handleDayChange = (e) => {
-    setSelectedDay(e.target.value);
-  };
+  const filteredEvents = events.filter((event) => event.Day === selectedDay);
 
-  const filteredEvents = events.filter(event => event.Day === selectedDay);
+  const getStaticMapUrl = (address) =>
+    `https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(
+      address
+    )}&zoom=15&size=300x200&key=${GOOGLE_MAPS_API_KEY}`;
+
+  const getInteractiveMapUrl = (address) =>
+    `https://www.google.com/maps?q=${encodeURIComponent(address)}`;
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Comedy Events in Chicago</h1>
-        <label htmlFor="day-select">Choose a day:</label>
-        <select id="day-select" onChange={handleDayChange}>
+        <h1>Comedy Events App</h1>
+        <p>Select a day to view events:</p>
+        <select
+          onChange={(e) => setSelectedDay(e.target.value)}
+          className="dropdown"
+        >
           <option value="Monday">Monday</option>
           <option value="Tuesday">Tuesday</option>
           <option value="Wednesday">Wednesday</option>
@@ -31,21 +42,50 @@ function App() {
           <option value="Saturday">Saturday</option>
           <option value="Sunday">Sunday</option>
         </select>
-        <ul>
-          {filteredEvents.map(event => (
-            <li key={event['Mic Name']}>
-              <h2>{event['Mic Name']}</h2>
-              <p><strong>Location:</strong> {event.Location}</p>
-              <p><strong>Address:</strong> {event.Address}</p>
-              <p><strong>Start Time:</strong> {event['Start Time']}</p>
-            </li>
+        <div className="events-list">
+          {filteredEvents.map((event) => (
+            <div key={event['Mic Name']} className="event-item">
+              <p>
+                <span className="label">EVENT:</span> {event['Mic Name']}
+              </p>
+              <p>
+                <span className="label">LOCATION:</span> {event.Location}
+              </p>
+              <p>
+                <span className="label">ADDRESS:</span>{' '}
+                <a
+                  href={getInteractiveMapUrl(event.Address)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link"
+                >
+                  {event.Address}
+                </a>
+              </p>
+              <div className="map-box">
+                <a
+                  href={getInteractiveMapUrl(event.Address)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={getStaticMapUrl(event.Address)}
+                    alt={`Map of ${event.Address}`}
+                    className="map-image"
+                  />
+                </a>
+              </div>
+              <p>
+                <span className="label">STATUS:</span>{' '}
+                {event.Status || '[AVAILABLE]'}
+              </p>
+              <hr />
+            </div>
           ))}
-        </ul>
+        </div>
       </header>
     </div>
   );
 }
 
 export default App;
-
-
